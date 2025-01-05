@@ -1,5 +1,4 @@
 ## Алгоритмы и структуры данных
-***
 ##### Структуры данных
   * [Массив](https://github.com/vktadm/algorithms/tree/master/data_structures/array)
   * [Связанный список](https://github.com/vktadm/algorithms/tree/master/data_structures/linked_list)
