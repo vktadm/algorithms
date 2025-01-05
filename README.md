@@ -19,6 +19,12 @@
   * [Блоковая](https://github.com/vktadm/algorithms/blob/master/sorting/blocksorting.py)
 ***
 ##### Численные алгоритмы
+  * [Генератор случайных чисел](https://github.com/vktadm/algorithms/blob/c7bd678eee9f35b3941f34085487a07b7f09c016/numerical_algorithms/random_generation.py)
+  * [Наибольший общий делитель](https://github.com/vktadm/algorithms/blob/c7bd678eee9f35b3941f34085487a07b7f09c016/numerical_algorithms/largest_common_divisor.py)
+  * [Возведение в степень](https://github.com/vktadm/algorithms/blob/943493a5ad90e6ffdd339113f756ab542821aae9/numerical_algorithms/exponentiation.py)
+  * [Решето Эратосфена (генерация простых чисел)](https://github.com/vktadm/algorithms/blob/943493a5ad90e6ffdd339113f756ab542821aae9/numerical_algorithms/gen_prime_numbers.py)
+  * [Проверка на простоту](https://github.com/vktadm/algorithms/blob/943493a5ad90e6ffdd339113f756ab542821aae9/numerical_algorithms/check_prime_number.py)
+  * [Поиск простых множителей](https://github.com/vktadm/algorithms/blob/943493a5ad90e6ffdd339113f756ab542821aae9/numerical_algorithms/search_prime_factors.py)
 ***
 ##### Хэширование
   * [Прямое связывание](https://github.com/vktadm/algorithms/blob/943493a5ad90e6ffdd339113f756ab542821aae9/hashing/_1_direct_connection.py)

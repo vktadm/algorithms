@@ -1,4 +1,3 @@
-"""Организация хэш-таблицы методом прямого связывания."""
 class Cell:
     def __init__(self, key, value, next_node):
         self.key = key
@@ -6,7 +5,7 @@ class Cell:
         self.next = next_node
 
     def __str__(self):
-        return f"[{self.key}:{self.value}]"
+        return f"{self.key}:{self.value}"
 
 
 class HashTable:
@@ -20,11 +19,11 @@ class HashTable:
         # Заполняем пустой ячейкой (вершиной связного списка).
         self.buckets = [Cell(None, None, None) for i in range(self.size)]
 
-    def _hash(self, key):
+    def _hash(self, key, size=None):
         """
         Вычисляем хэш (индекс элемента массива).
         """
-        return key % self.size
+        return key % (size or self.size)
 
     def _find_cell_before(self, key):
         """
@@ -105,53 +104,54 @@ class HashTable:
 
     def __str__(self):
         """
-        Возвращает текстовое представление хэш таблицы.
+        Возвращает текстовое представление хэш таблицы в формате:
+        Ключ
         """
         text = ""
         for _, cell in enumerate(self.buckets):
-            text += f"{_}:"
+            text += f"{_}->"
             cell = cell.next
+            cells = []
             while cell is not None:
-                text += f" {cell}"
+                cells.append(f"{cell}")
                 cell = cell.next
-            text += "\n"
-        return text
+            text += "[{}] ".format(";".join(cells))
+        return text.strip()
 
     def change_size(self, new_size):
         """
         Изменяет размер хэш таблицы и делает рехэширование.
         """
         # Создаем новый массив.
-        new_buckets = [Cell(None, None, None) for i in range(new_size)]
-
-        # Делаем рехэширование.
-        # Перебираем старый массив.
+        buf = []
         for cell in self.buckets:
             cell = cell.next
             while cell is not None:
-                # Новый ключ
-                bucket_num = self._hash(cell.key, new_size)
-                linked_list = new_buckets[bucket_num]
-
-                # Добавляем новую ячейку в начало связного списка.
-                new_cell = Cell(cell.key, cell.value, linked_list.next)
-                linked_list.next = new_cell
-
+                buf.append([cell.key, cell.value])
                 cell = cell.next
 
-        # Заменяем старый массив новым.
-        self.buckets = new_buckets
-        self.size = new_size
-        self.elements = len(self.buckets)
+        # Делаем рехэширование.
+        self.__init__(new_size)
 
+        # Заменяем старый массив новым.
+        for cell in buf:
+            self.insert(cell[0], cell[1])
 
 if __name__ == "__main__":
-    ht = HashTable(10)
-    for key, value in map(lambda x: [int(x[1:4]), x],
-                          ["B617KM39RUS", "B313AB39RUS", "C254HE39RUS", "E123OK39RUS",
-                           "H637EA39RUS", "O129BA39RUS", "T765KP39RUS", "E389BT39RUS",
-                           "B204BA39RUS", "M001EC39RUS", "A973AA39RUS", "C349EP39RUS",
-                           "C166OK39RUS", "H555HH39RUS", "K675KH39RUS", "E746OP39RUS",
-                           "T162BA39RUS", "C130BE39RUS", "B498BE39RUS", "B516MK39RUS"]):
-        ht.insert(key, value)
+    ht = HashTable(2)
+
+    # Напорлняем
+    ht.insert(617, 'a')
+    ht.insert(313, 'b')
+    ht.insert(254, 'c')
+    ht.insert(123, 'd')
+    ht.insert(637, 'e')
+
+    # Выводим
+    print(ht)
+
+    # Рехэшируем
+    ht.change_size(5)
+
+    # Выводим
     print(ht)

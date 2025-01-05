@@ -24,7 +24,7 @@ def gen_prime(n):
             p_mult = p * factor  # Число кратное p.
 
             # Проходим по всем кратным числам и отмечаем их как False.
-            while p_mult <= n:  # Это условие в уроке показано с ошибкой, должно быть <= n
+            while p_mult <= n:
                 l[p_mult] = False
                 factor += 1
                 p_mult = p * factor

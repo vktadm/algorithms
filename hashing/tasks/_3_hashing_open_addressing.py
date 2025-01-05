@@ -19,24 +19,26 @@ class HashTable:
     def _hash(self, key):
         return key % self.size
 
-    def add(self, key, value, item=None):
+    def add(self, key, value):
         """
         Добавляем элемент в хэш-таблицу.
         Возбуждаем исключение, если элемент уже есть в таблице.
+
+        item - уже существующий DataItem (например, для целей рехэширования, чтобы не пересоздавать объекты)
         """
 
         # Проверяем заполненность хэш-таблицы.
         if self.elements == self.size:
             raise OverflowError
 
-        # Высчитываем начальный индекс для вставки.
+        # Рассчитываем начальный индекс для вставки.
         probe = self._hash(key)
 
         while True:
             # Проверяем, не пуст ли текущий элемент.
             if self.table[probe] is None:
                 # Вставляем элемент в хэш-таблицу.
-                self.table[probe] = item or DataItem(key, value)
+                self.table[probe] = DataItem(key, value)
                 self.elements += 1
                 return
 
@@ -74,49 +76,52 @@ class HashTable:
             probe = self._hash(probe + HashTable.STEP)
 
     def change_size(self, new_size):
-        # Запоминаем старую таблицу (поверхностная копия)
-        old_table = self.table.copy()
+        # Создаем новую таблицу с новым размером
+        new_table = [None for _ in range(new_size)]
 
-        # Меняем размер и сбрасываем заполненность
-        self.size = new_size
+        # Обнуляем количество элементов в текущей таблице
         self.elements = 0
 
-        # Создаём новую таблицу
-        self.table = [None for _ in range(self.size)]
-
-        # Заполняем новую таблицу (просто проходим по всем элементам старой таблицы
-        for item in old_table:
+        # Переносим элементы из старой таблицы в новую
+        for item in self.table:
             if item is not None:
-                # Вставляем в новую таблицу (без создания нового объекта)
-                self.add(item.key, item.value, item)
+                # Вставляем элемент в новую таблицу
+                probe = item.key % new_size
 
-        # Удаляем старую таблицу
-        del old_table
+                while True:
+                    if new_table[probe] is None:
+                        new_table[probe] = item  # Перемещаем ссылку на существующий объект
+                        self.elements += 1
+                        break
+
+                    probe = (probe + HashTable.STEP) % new_size
+
+        # Обновляем размер и таблицу хэш-таблицы
+        self.size = new_size
+        self.table = new_table
 
     def __str__(self):
         """
         Выводит все ячейки хэш-таблицы.
         """
-        text = ""
+        text = []
         for i in range(self.size):
             if self.table[i] is None:
-                text += f"{i: 3d}: [--------]\n"
+                text.append(f"{i: 3d}: [---]")
             else:
-                text += f"{i: 3d}: {self.table[i]}\n"
+                text.append(f"{i: 3d}: {self.table[i]}")
 
-        return text
+        return "\n".join(text)
+
 
 if __name__ == "__main__":
-    ht = HashTable(35)
-    for key, value in map(lambda x: [int(x[1:4]), x],
-                          ["B617KM39RUS", "B398AB39RUS", "C254HE39RUS", "E123OK39RUS",
-                           "H637EA39RUS", "O157BA39RUS", "T765KP39RUS", "E389BT39RUS",
-                           "B204BA39RUS", "M001EC39RUS", "A973AA39RUS", "C349EP39RUS",
-                           "C166OK39RUS", "H555HH39RUS", "K675KH39RUS", "E746OP39RUS",
-                           "T162BA39RUS", "C130BE39RUS", "B498BE39RUS", "B513MK39RUS"]):
-        ht.add(key, value)
-
+    ht = HashTable(5)
+    ht.add(617, "a")
+    ht.add(313, "b")
+    ht.add(254, "c")
+    ht.add(123, "d")
+    ht.add(637, "e")
     print(ht)
 
-    ht.change_size(55)
-    print()
+    ht.change_size(10)
+    print(ht)
