@@ -32,3 +32,8 @@
   * [Двойное хэширование](https://github.com/vktadm/algorithms/blob/b99ac43a468d86316e6056059b5b54557773b122/hashing/_5_double_hashing.py)
   * [Упорядоченное хэширование](https://github.com/vktadm/algorithms/blob/b99ac43a468d86316e6056059b5b54557773b122/hashing/_6_ordered_hashing.py)
   * [Фильтры Блума](https://github.com/vktadm/algorithms/blob/b99ac43a468d86316e6056059b5b54557773b122/hashing/_7_bloom_filters.py)
+***
+##### Рекурсия
+* [Изменение порядка слов в строке]()
+* [Факториал]()
+* [Числа Фибоначчи]()
