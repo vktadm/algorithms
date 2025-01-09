@@ -34,6 +34,6 @@
   * [Фильтры Блума](https://github.com/vktadm/algorithms/blob/b99ac43a468d86316e6056059b5b54557773b122/hashing/_7_bloom_filters.py)
 ***
 ##### Рекурсия
-* [Изменение порядка слов в строке]()
-* [Факториал]()
-* [Числа Фибоначчи]()
+* [Изменение порядка слов в строке](https://github.com/vktadm/algorithms/blob/00e3dadb1761937b0cbb3064acae35633867abbe/recursion/_1_understanding_recursion_2.py)
+* [Факториал](https://github.com/vktadm/algorithms/blob/00e3dadb1761937b0cbb3064acae35633867abbe/recursion/_2_factorial.py)
+* [Числа Фибоначчи](https://github.com/vktadm/algorithms/blob/00e3dadb1761937b0cbb3064acae35633867abbe/recursion/_3_fibonacci_numbers.py)
