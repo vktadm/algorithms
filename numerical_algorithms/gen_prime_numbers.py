@@ -35,4 +35,4 @@ def gen_prime(n):
     return result
 
 if __name__ == "__main__":
-    print(gen_prime(1))
+    print(gen_prime(20))
