@@ -53,3 +53,7 @@
 * [Деревья квадрантов](https://github.com/vktadm/algorithms/blob/1a95feb9031675afcdfcbdc922cd957ab22c60de/trees/quadrant_trees.py)
 * [АВЛ-деревья](https://github.com/vktadm/algorithms/blob/1a95feb9031675afcdfcbdc922cd957ab22c60de/trees/avl-trees.py)
 * [2-3 деревья (githab)](https://github.com/strictlysimpledesign/23tree/blob/master/23tree.py)
+***
+#### Деревья принятия решений
+* [Метод полного перебора]()
+* [Метод ветвей и границ]()
